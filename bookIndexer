@@ -1,1 +1,17 @@
-print("uhhh")
+title = ""
+numofPages=0
+totPages=[]
+
+print("Enter the book title: ")
+input(title)
+print("Enter the number of pages: ")
+input(numofPages)
+
+
+
+#list of topics we muset include:
+# for and while loops
+# files
+# arrays
+# input validation
+# if statements
