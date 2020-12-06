@@ -1,13 +1,28 @@
-title = ""
-numofPages=0
-totPages=[]
+f = open("books.txt") #opens the file containing the book list
+crntBooks= [] #determines how many books are in the list and which book to interact with, aka 'Current Books'
+endRun= 0 #control variable to end the program, aka 'End Run'
+srch='' #decides whether to remove, add, or search a book, aka 'Search'
+crntLine="" #used for the current line of a file meant to be interacted with, aka 'Current Line'
+rmv=0 #used to choose the book being removed, aka 'Remove'
+linesInFile=0
 
-print("Enter the book title: ")
-input(title)
-print("Enter the number of pages: ")
-input(numofPages)
-
-
+while endRun==0:
+    print("Type 'R' to remove a book from inventory, 'A' to add a book to inventory, or 'S' to view a book and its details.")
+    srch=input()
+    if srch=='R':
+        counter=1
+        for x in f:
+            print(counter,x)
+            counter+=1
+            crntBooks.append(x)
+        print("Type just the line number of the book you want to remove:")
+        rmv=int(input())
+        del crntBooks[rmv]
+        newF= open("books.txt", "w+")
+        counter=0
+        for l in newF:     #this for loop is broken af needs fixed
+            newF.write(crntBooks[counter])
+            print(crntBooks)
 
 #list of topics we muset include:
 # for and while loops
