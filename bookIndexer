@@ -5,28 +5,66 @@ srch='' #decides whether to remove, add, or search a book, aka 'Search'
 crntLine="" #used for the current line of a file meant to be interacted with, aka 'Current Line'
 rmv=0 #used to choose the book being removed, aka 'Remove'
 linesInFile=0
+stupid=1
+newBook=""
 
 while endRun==0:
-    print("Type 'R' to remove a book from inventory, 'A' to add a book to inventory, or 'S' to view a book and its details.")
+    print("Type 'R' to remove a book from inventory, 'A' to add a book to inventory, 'V' to view inventory, or 'X' to end.")
     srch=input()
+    
     if srch=='R':
         counter=1
+        x=""
         for x in f:
             print(counter,x)
             counter+=1
             crntBooks.append(x)
         print("Type just the line number of the book you want to remove:")
         rmv=int(input())
+        rmv-=1
         del crntBooks[rmv]
-        newF= open("books.txt", "w+")
+        stupid = len(crntBooks)
+        f.close()
+        newF= open("books.txt", "wt")
         counter=0
-        for l in newF:     #this for loop is broken af needs fixed
+        while counter < stupid:
             newF.write(crntBooks[counter])
-            print(crntBooks)
-
-#list of topics we muset include:
-# for and while loops
-# files
-# arrays
-# input validation
-# if statements
+            counter+=1
+        newF.close()
+        f= open("books.txt")
+        crntBooks.clear()
+        
+    if srch=='A':
+        print("Type the name of the title of the book you would like to add:")
+        newBook=input()
+        x=""
+        for x in f:
+            crntBooks.append(x)
+        crntBooks.append(newBook)
+        f.close()
+        newF= open("books.txt", "wt")
+        stupid=len(crntBooks)
+        counter=0
+        while counter < stupid:
+            newF.write(crntBooks[counter])
+            counter+=1
+        newF.close()
+        f= open("books.txt")
+        crntBooks.clear()
+        
+    if srch=='V':
+        x=""
+        for x in f:
+            crntBooks.append(x)
+        counter=0
+        stupid= len(crntBooks)
+        while counter < stupid:
+            print(crntBooks[counter])
+            counter+=1
+            
+    if srch=='X':
+        print("End")
+        break
+            
+    if srch!='A' and srch!='R' and srch!='V' and srch!='X':
+        print("That is not a valid input.")
