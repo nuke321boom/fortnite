@@ -13,12 +13,14 @@ while endRun==0:
     srch=input()
     
     if srch=='R':
-        counter=1
         x=""
         for x in f:
-            print(counter,x)
-            counter+=1
             crntBooks.append(x)
+        counter=0
+        stupid= len(crntBooks)
+        while counter < stupid:
+            print(counter+1, crntBooks[counter])
+            counter+=1
         print("Type just the line number of the book you want to remove:")
         rmv=int(input())
         rmv-=1
@@ -41,6 +43,7 @@ while endRun==0:
         for x in f:
             crntBooks.append(x)
         crntBooks.append(newBook)
+        crntBooks.append("\n")
         f.close()
         newF= open("books.txt", "wt")
         stupid=len(crntBooks)
